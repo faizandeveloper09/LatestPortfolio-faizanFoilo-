@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Faizan Portfolio | Web Developer | Animated Sections</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Animate.css (kept for compatibility, but scroll animations will be primary) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Font Awesome 6 (latest) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts (Inter for fresh look in about section, but keeps overall consistency) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========== EXISTING STYLES (preserved exactly) ========== */
+        .portfolio-topbar {
+            background: #001f3f;
+            height: 50px;
+            color: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1040;
+            border-bottom: 2px solid #00ff9d;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+
+        .portfolio-topbar-contact {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .portfolio-topbar-contact a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-topbar-contact a:hover {
+            color: #00ff9d;
+        }
+
+        .portfolio-topbar-contact i {
+            color: #00ff9d;
+            font-size: 1rem;
+        }
+
+        .portfolio-topbar-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .portfolio-topbar-social a {
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+        }
+
+        .portfolio-topbar-social a:hover {
+            background: #00ff9d;
+            color: #001f3f;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-topbar-contact span {
+                display: none;
+            }
+
+            .portfolio-topbar-contact a {
+                gap: 0;
+            }
+
+            .portfolio-topbar-contact i {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .portfolio-topbar-contact {
+                gap: 1rem;
+            }
+
+            .portfolio-topbar-social {
+                gap: 0.5rem;
+            }
+        }
+
+        :root {
+            --navy-blue: #003366;
+            --light-navy: #0a4a8c;
+            --white: #ffffff;
+            --black: #000000;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+        }
+
+        /* Smooth scrolling and offset for fixed header */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #about,
+        #education,
+        #projects,
+        #skills-section,
+        #contact {
+            scroll-margin-top: 100px;
+        }
+
+        #education {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+        }
+
+        .section-title {
+            color: var(--navy-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--navy-blue);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .education-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            background-color: var(--white);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1.5rem;
+            border-bottom: none;
+        }
+
+        .card-header h5 {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .education-icon {
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        .institution {
+            color: var(--light-navy);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skills-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--medium-gray);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .skills-list li:before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--navy-blue);
+            position: absolute;
+            left: 0;
+        }
+
+        .badge-custom {
+            background-color: var(--light-navy);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .progress {
+            height: 8px;
+            margin-bottom: 1rem;
+            background-color: var(--medium-gray);
+            border-radius: 4px;
+        }
+
+        .progress-bar {
+            background-color: var(--navy-blue);
+            border-radius: 4px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--navy-blue);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: var(--white);
+            border: 4px solid var(--navy-blue);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--navy-blue);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--navy-blue);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--navy-blue);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--navy-blue) transparent transparent;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid var(--navy-blue);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--navy-blue) transparent transparent;
+            }
+
+            .left::after,
+            .right::after {
+                left: 18px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+
+        /* ========== NEW SKILLS SECTION STYLES ========== */
+        .skills-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .skills-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Professional Skills (circular) */
+        .pro-skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .pro-skill-item {
+            width: 150px;
+            text-align: center;
+        }
+
+        .pro-skill-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+        }
+
+        .pro-skill-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #e6e6e6;
+            stroke-width: 10;
+        }
+
+        .circle-progress {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 502;
+            /* 2π*80 ≈ 502.4 */
+            stroke-dashoffset: 502;
+            animation-play-state: paused;
+            /* Paused by default */
+        }
+
+        /* Distinct colors for each circle */
+        .circle-1 {
+            stroke: #ff6384;
+        }
+
+        /* Creativity */
+        .circle-2 {
+            stroke: #36a2eb;
+        }
+
+        /* Communication */
+        .circle-3 {
+            stroke: #ffce56;
+        }
+
+        /* Problem Solving */
+        .circle-4 {
+            stroke: #4bc0c0;
+        }
+
+        /* Team Work */
+
+        /* Animations - play only when section is visible */
+        .skills-section.visible .circle-1 {
+            animation: dash-1 1.5s ease-in-out forwards;
+            animation-play-state: running;
+        }
+
+        .skills-section.visible .circle-2 {
+            animation: dash-2 1.5s ease-in-out forwards;
+            animation-play-state: running;
+        }
+
+        .skills-section.visible .circle-3 {
+            animation: dash-3 1.5s ease-in-out forwards;
+            animation-play-state: running;
+        }
+
+        .skills-section.visible .circle-4 {
+            animation: dash-4 1.5s ease-in-out forwards;
+            animation-play-state: running;
+        }
+
+        @keyframes dash-1 {
+            to {
+                stroke-dashoffset: 50;
+            }
+        }
+
+        /* 90% */
+        @keyframes dash-2 {
+            to {
+                stroke-dashoffset: 100;
+            }
+        }
+
+        /* 80% */
+        @keyframes dash-3 {
+            to {
+                stroke-dashoffset: 125;
+            }
+        }
+
+        /* 75% */
+        @keyframes dash-4 {
+            to {
+                stroke-dashoffset: 226;
+            }
+        }
+
+        /* 55% */
+
+        .circle-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .pro-skill-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .pro-skill-item:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Technical Skills (progress bars) */
+        .tech-skills-container {
+            padding: 0 15px;
+        }
+
+        .tech-skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .tech-skill-header span:first-child {
+            color: #333;
+        }
+
+        .tech-skill-header span:last-child {
+            color: var(--navy-blue);
+            font-weight: 600;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+
+        .progress-bar {
+            border-radius: 5px;
+            width: 0%;
+            /* Start at 0% */
+            transition: width 1s ease-in-out;
+        }
+
+        /* Custom colors for tech skills (based on Bootstrap theme) */
+        .bg-html {
+            background-color: #e34c26;
+        }
+
+        /* HTML */
+        .bg-js {
+            background-color: #f7df1e;
+        }
+
+        /* JavaScript */
+        .bg-bootstrap {
+            background-color: #7952b3;
+        }
+
+        /* Bootstrap */
+        .bg-php {
+            background-color: #787cb5;
+        }
+
+        /* PHP */
+        .bg-database {
+            background-color: #00758f;
+        }
+
+        /* Database (MySQL) */
+        .bg-laravel {
+            background-color: #ff2d20;
+        }
+
+        /* Laravel */
+        .bg-angular {
+            background-color: #dd0031;
+        }
+
+        /* Angular */
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pro-skill-item {
+                width: 120px;
+            }
+
+            .pro-skill-circle {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .pro-skill-item {
+                width: 100px;
+            }
+
+            .pro-skill-circle {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border: 2px solid #000080;
+        }
+
+        .form-title {
+            color: #000080;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border: 1px solid #000000;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #000080;
+            box-shadow: 0 0 0 0.25rem rgba(0, 0, 128, 0.25);
+            transform: scale(1.02);
+        }
+
+        .form-control:hover {
+            border-color: #000080;
+        }
+
+        .btn-submit {
+            background-color: #000080;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #000000;
+            transform: translateY(-3px);
+        }
+
+        .invalid-feedback {
+            color: #000080;
+        }
+
+        .is-invalid {
+            border-color: #000080;
+            background-image: none;
+        }
+
+        .is-valid {
+            border-color: #000000;
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .blow-effect {
+            transition: all 0.3s;
+        }
+
+        .blow-effect:hover {
+            transform: scale(1.05);
+        }
+
+        .form-label {
+            color: #000000;
+        }
+
+        .btn-submit:hover {
+            background-color: white;
+            color: black;
+            border-color: white;
+        }
+
+        /* Navbar link styling - centered & unique */
+        .navbar-nav {
+            gap: 0.8rem;
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 0.8rem;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        /* Hover effect: underline with glow */
+        .navbar-nav .nav-link:hover {
+            color: #00ff9d;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #00ff9d;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 70%;
+        }
+
+        /* Active link (when clicked) - you can optionally add a class, but for smooth scroll it's fine */
+        .navbar-nav .nav-link:active {
+            color: #00ff9d;
+            transform: scale(0.98);
+        }
+
+        /* Responsive: on mobile, the links will still be centered because of justify-content-center */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            .navbar-nav .nav-link {
+                display: inline-block;
+            }
+        }
+
+        /* ========== NEW ABOUT SECTION STYLES (unique classes to avoid conflicts) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #ffffff;
+            /* clean white background for whole page */
+        }
+
+        /* ---------- 1. NAVBAR PADDING (as requested: add padding to navbar) ---------- */
+        /* This targets common navbar classes — adjust if your navbar uses a different class name.
+           Works for .navbar, .topbar, or any main navigation bar.
+           Keeps the design consistent without changing topbar/navbar's content or style. */
+        .navbar,
+        .topbar,
+        nav.navbar,
+        header .navbar,
+        .main-navbar {
+            padding: 1rem 2rem !important;
+            /* left/right + top/bottom comfortable spacing */
+        }
+
+        /* For extra safety: if navbar is inside a container, ensure it inherits padding as well */
+        .navbar .container,
+        .topbar .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /* Responsive navbar padding on small screens (still generous) */
+        @media (max-width: 768px) {
+
+            .navbar,
+            .topbar,
+            nav.navbar {
+                padding: 0.75rem 1.25rem !important;
+            }
+        }
+
+        /* ---------- 2. ABOUT SECTION — WHITE BACKGROUND + DARK TEXT + REFINED ACCENTS ---------- */
+        /* Original class: .about-wrapper-faizan — now with white background, high readability */
+        .about-wrapper-faizan {
+            background: #ffffff;
+            /* ✅ white background as requested */
+            padding: 80px 0;
+            /* vertical padding remains, clean spacing */
+            color: #1e293b;
+            /* rich dark slate for main text */
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            transition: all 0.2s;
+        }
+
+        /* Section title: dark & modern */
+        .about-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            border-bottom: 3px solid #0f9d58;
+            /* fresh green accent (professional on white) */
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            /* deep almost-black */
+        }
+
+        /* Avatar styling: clean border, subtle shadow */
+        .about-avatar-circle {
+            text-align: center;
+            position: relative;
+        }
+
+        .about-avatar-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0f9d58;
+            /* fresh green border to match new accent */
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .about-avatar-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Tech icon ring: light background + soft borders (fits white bg perfectly) */
+        .about-icon-ring {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .about-icon-ring i {
+            font-size: 1.7rem;
+            background: #f1f5f9;
+            /* very light gray-blue — modern */
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .about-icon-ring i:hover {
+            transform: translateY(-4px) scale(1.05);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+            background: #ffffff;
+            border-color: #0f9d58;
+        }
+
+        /* brand colors for tech icons remain vibrant (keep original) */
+        .about-icon-ring .fa-html5 {
+            color: #E34F26;
+        }
+
+        .about-icon-ring .fa-css3-alt {
+            color: #1572B6;
+        }
+
+        .about-icon-ring .fa-js {
+            color: #F7DF1E;
+            text-shadow: 0 0 1px #000;
+        }
+
+        .about-icon-ring .fa-bootstrap {
+            color: #7952B3;
+        }
+
+        .about-icon-ring .fa-react {
+            color: #61DAFB;
+        }
+
+        /* main about text: dark, easy to read on white */
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #1e293b;
+            /* dark slate for paragraphs */
+        }
+
+        .about-highlight {
+            color: #0f9d58;
+            /* fresh green highlight, stands out on white */
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Interest badges: light gray background, green left border, dark text */
+        .about-interest-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .about-badge-item {
+            background: #f8fafc;
+            /* soft neutral */
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-left: 3px solid #0f9d58;
+            transition: all 0.2s;
+            color: #0f172a;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .about-badge-item i {
+            margin-right: 8px;
+            color: #0f9d58;
+        }
+
+        .about-badge-item:hover {
+            background: #eef2ff;
+            transform: translateX(3px);
+            border-left-color: #0b7a46;
+        }
+
+        /* Call-to-action button: subtle green outline, elegant */
+        .about-btn-soft-green {
+            border: 1.5px solid #0f9d58;
+            background: transparent;
+            color: #0f9d58;
+            border-radius: 40px;
+            padding: 8px 28px;
+            font-weight: 600;
+            transition: 0.25s;
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .about-btn-soft-green i {
+            font-size: 0.9rem;
+        }
+
+        .about-btn-soft-green:hover {
+            background: #0f9d58;
+            color: white;
+            box-shadow: 0 6px 14px rgba(15, 157, 88, 0.2);
+            border-color: #0f9d58;
+            transform: translateY(-2px);
+        }
+
+        /* responsiveness: keep consistent padding for mobile */
+        @media (max-width: 768px) {
+            .about-section-title {
+                font-size: 2rem;
+            }
+
+            .about-avatar-img {
+                width: 170px;
+                height: 170px;
+            }
+
+            .about-icon-ring i {
+                width: 42px;
+                height: 42px;
+                font-size: 1.3rem;
+            }
+
+            .about-wrapper-faizan {
+                padding: 60px 0;
+                /* vertical padding remains smooth */
+            }
+        }
+
+        /* small extra: make sure container spacing inside about section is consistent */
+        .about-wrapper-faizan .container {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        /* Optional: fine-tune for very small devices */
+        @media (max-width: 480px) {
+            .about-badge-item {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ========== ADDITIONAL SCROLL REVEAL ANIMATIONS (same style as skills section) ========== */
+        .section-fade-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s ease;
+        }
+
+        .section-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensure contact row animation doesn't break layout */
+        #contact .row.justify-content-center {
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .about-avatar-circle {
+            width: 400px;
+            /* size barhao */
+            height: 400px;
+            /* same rakhna zaroori hai */
+            border-radius: 50%;
+            position: relative;
+            margin: auto;
+        }
+
+        .about-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== TOPBAR ========== -->
+    <div class="portfolio-topbar">
+        <div class="container">
+            <div class="portfolio-topbar-contact">
+                <a href="mailto:syedfaizan0910@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    <span>syedfaizan0910@gmail.com</span>
+                </a>
+                <a href="tel:+923463223446">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+92 346 3223446</span>
+                </a>
+            </div>
+            <div class="portfolio-topbar-social">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.fiverr.com/sellers/faizan_09ali/edit" target="_blank"><i
+                        class="fas fa-briefcase"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://pk.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/faizandeveloper09" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========== NAVBAR (UPDATED: added About link) ========== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background: linear-gradient(135deg, #001f3f 0%, #000000 100%); top: 50px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: #ffffff;">
+                <i class="fas fa-code me-2"></i><i> <b>faizanFolio</b></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills-section">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">How to Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== ABOUT SECTION (replaces carousel, unique classes, fully responsive) ========== -->
+    <nav class="navbar navbar-expand-lg bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">MyPortfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== ABOUT ME SECTION – WITH SCROLL ANIMATION (class section-fade-up) ========== -->
+    <section id="about">
+        <div class="about-wrapper-faizan section-fade-up">
+            <div class="container">
+                <div class="text-center text-md-start mb-4">
+                    <h2 class=" d-flex justify-content-center align-items-center p-3"><b><i>About Me</i></b></h2>
+                </div>
+
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5 col-md-12 text-center">
+                        <div class="about-avatar-circle">
+                            <img class="about-avatar-img" src="./assets/faizanpic.jpeg" alt="Faizan profile avatar">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="about-text">
+                            <p>
+                                <span class="about-highlight"><i class="fas fa-hand-peace me-2"></i>Hi, I'm
+                                    Syed Faizan Ali </span> — A passionate web developer and creative enthusiast.
+                                I specialize in building modern, responsive, and visually appealing websites.
+                            </p>
+                            <p>
+                                <i class="fas fa-lightbulb me-2" style="color:#0f9d58;"></i>
+                                I enjoy turning ideas into real digital experiences.
+                                Using clean code and creative design is my strength.
+                                I love bringing concepts to life through development.
+                            </p>
+                            <p>
+                                <i class="fas fa-graduation-cap me-2" style="color:#0f9d58;"></i>
+                                Currently, I’m continuously learning and improving my skills.
+                                I stay updated with the latest web technologies.
+                                Growth and learning are part of my daily routine.
+                            </p>
+                            <p>
+                                <i class="fas fa-chart-line me-2" style="color:#0f9d58;"></i>
+                                Goal
+                                My goal is to create impactful websites.
+                                I aim to deliver real value through my work.
+                                I strive to build solutions that make a difference.
+                            </p>
+                        </div>
+                        <div class="about-interest-badges">
+                            <div class="about-badge-item"><i class="fas fa-code"></i> Clean Code</div>
+                            <div class="about-badge-item"><i class="fas fa-mobile-alt"></i> Responsive</div>
+                            <div class="about-badge-item"><i class="fas fa-rocket"></i> Performance</div>
+                            <div class="about-badge-item"><i class="fas fa-palette"></i> UI/UX</div>
+                        </div>
+                        <a href="#contact" class="about-btn-soft-green">
+                            <i class="fas fa-paper-plane me-2"></i> Let's talk
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION SECTION (scroll animation) ========== -->
+    <section id="education">
+        <div class="container">
+            <h2 class="text-dark d-flex justify-content-center align-items-center p-5"><b><i>Education &
+                        Qualifications</i></b></h2>
+
+            <!-- Education Timeline -->
+            <div class="timeline mb-5">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5>Intermediate In Engineering</h5>
+                            <span class="badge-custom">2021-2023</span>
+                        </div>
+                        <p class="institution"><i class="fas fa-university me-2"></i>PECHS Govt Education Boys College
+                        </p>
+                        <!-- <p class="mb-3">Percentage: 60%</p> -->
+                        <p>They start with "Software Engineer" which immediately establishes your credibility.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5>SSC (Secondary School Certificate)</h5>
+                            <span class="badge-custom">2011-2021</span>
+                        </div>
+                        <p class="institution"><i class="fas fa-school me-2"></i>Dhaka Seconday School</p>
+                        <!-- <p class="mb-3">Percentage: 87% (In Matric)</p> -->
+                        <p>I finished my matric with a focus on Science, strengthening my abilities in logical
+                            reasoning, scientific exploration, and technical learning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <!-- Academic Achievements -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="education-card h-100">
+                        <div class="card-header">
+                            <h5><i class="fas fa-trophy me-2"></i>Academic Achievements</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="skills-list">
+                                <li>Eager to participate in educational games with a proven track record of leading a
+                                    team to win first place in competition.</li>
+                                <li>Keen on participating in competitive sports with a consistent record of finishing in
+                                    ranked positions across various races.</li>
+                                <li>Thrive in high-pressure competitive environments, demonstrated by leading the
+                                    English segment in a team quiz competition where we secured 1st position at the
+                                    matric level.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="education-card h-100">
+                        <div class="card-header">
+                            <h5><i class="fas fa-laptop-code me-2"></i>Technical Skills</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3">Programming Languages:</p>
+                            <div class="mb-3">
+                                <span class="badge-custom">C Sharp</span>
+                                <span class="badge-custom">Laravel</span>
+                                <span class="badge-custom">PHP</span>
+                                <span class="badge-custom">JavaScript</span>
+                                <span class="badge-custom">Html</span>
+                            </div>
+                            <p class="mb-3">Web Technologies:</p>
+                            <div class="mb-3">
+                                <span class="badge-custom">HTML/CSS</span>
+                                <span class="badge-custom">PHP</span>
+                                <span class="badge-custom">JavaScript</span>
+                                <span class="badge-custom">Bootstrap</span>
+                            </div>
+                            <p class="mb-3">Tools & Platforms:</p>
+                            <div>
+                                <span class="badge-custom">Git/GitHub</span>
+                                <span class="badge-custom">VS Code</span>
+                                <span class="badge-custom">MySQL</span>
+                                <span class="badge-custom">Visual Studio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extracurricular Activities -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="education-card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-users me-2"></i>Extracurricular Activities</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-basketball-ball me-2"></i>School Cricket Team</h6>
+                                    <p>Represented school in inter-school tournaments, developed teamwork and discipline
+                                        through regular practice and competitive matches.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-trophy me-2"></i>Aptech TechWiz Competition - PetCare Project
+                                    </h6>
+                                    <p>Participated in Aptech's TechWiz competition, developed "PetCare" - a web
+                                        application for pet management using PHP backend, HTML, CSS, and MySQL database.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-graduation-cap me-2"></i>Science Club Member</h6>
+                                    <p>Participated in weekly science discussions, conducted experiments, and attended
+                                        workshops to complement academic learning.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-flag me-2"></i>Class Representative</h6>
+                                    <p>Elected as class representative, organized study groups, coordinated with
+                                        teachers, and represented classmates in school meetings.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION (scroll animation) ========== -->
+
+    <section id="projects">
+        <h1 class="text-center p-1 mt-5"><b><i>Top Projects</i></b></h1>
+        <div class="container">
+            <!-- First Row -->
+            <div class="cards row p-3 d-flex justify-content-center">
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><b> <i>PetCare-Management-System</i></b></h5>
+                        <p><b><i>A PHP-based PetCare system to efficiently manage pets, owners, appointments, and
+                                    related services.</i></b></p>
+                        <a href="https://github.com/faizandeveloper09/PetCare-Management-System"
+                            class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 2.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> <b><i>Covid Vaccination System</i></b></h5>
+                        <p><b><i>COVID vaccination system with admin, doctor, patient panels managing appointment
+                                    records database.</i></b></p>
+                        <a href="https://github.com/faizandeveloper09/completeCovidSite"
+                            class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 3.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><b><i>Online Course Management System</i></b></h5>
+                        <p><b><i>A .NET-based course platform where students register, explore course details, and
+                                    purchase courses online easily.</i></b></p>
+                        <a href="https://faizandeveloper09.github.io/Online-Course-Management-System/"
+                            class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="cards row p-3 d-flex justify-content-center">
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 4.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><b><i>Mark-Sheet Project</i></b></h5>
+                        <p><b><i>A marksheet system where users input marks to automatically calculate percentage and
+                                    assign grades instantly.</i></b></p>
+                        <a href="https://faizandeveloper09.github.io/marksheetProject/" class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 5.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><b><i>Dynamic Data Manager</i></b></h5>
+                        <p><b><i>A dynamic data manager where users log in, access dashboards, and update their profiles
+                                    easily.</i></b></p>
+                        <a href="https://github.com/faizandeveloper09/Dynamic-Data-Manager"
+                            class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+                <div class="card m-3" style="width: 18rem; padding: 5px;">
+                    <img src="./assets/card 6.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><b><i>Course-Hub</i></b></h5>
+                        <p><b><i>A Course Hub platform offering free frontend and backend courses with easy downloads,
+                                    no login required.</i></b></p>
+                        <a href="https://faizandeveloper09.github.io/CourseHub/" class="btn btn-dark btn-sm">View
+                            Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center p-5">
+            <a href="https://github.com/faizandeveloper09?tab=repositories" class="btn btn-dark btn-sm">View
+                Project</a>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS SECTION (original animated section) ========== -->
+    <section class="skills-section" id="skills-section">
+        <div class="container">
+            <h2 class="skills-title"><b><i>My Skills</i></b></h2>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="text-center mb-4" style="font-weight: 700; color: #333;">Professional Skills</h3>
+                    <div class="pro-skills-container">
+                        <div class="pro-skill-item">
+                            <div class="pro-skill-circle"><svg viewBox="0 0 200 200">
+                                    <circle class="circle-bg" cx="100" cy="100" r="80"></circle>
+                                    <circle class="circle-progress circle-1" cx="100" cy="100" r="80"></circle>
+                                </svg>
+                                <div class="circle-value">90%</div>
+                            </div>
+                            <div class="pro-skill-label">Creativity</div>
+                        </div>
+                        <div class="pro-skill-item">
+                            <div class="pro-skill-circle"><svg viewBox="0 0 200 200">
+                                    <circle class="circle-bg" cx="100" cy="100" r="80"></circle>
+                                    <circle class="circle-progress circle-2" cx="100" cy="100" r="80"></circle>
+                                </svg>
+                                <div class="circle-value">80%</div>
+                            </div>
+                            <div class="pro-skill-label">Communication</div>
+                        </div>
+                        <div class="pro-skill-item">
+                            <div class="pro-skill-circle"><svg viewBox="0 0 200 200">
+                                    <circle class="circle-bg" cx="100" cy="100" r="80"></circle>
+                                    <circle class="circle-progress circle-3" cx="100" cy="100" r="80"></circle>
+                                </svg>
+                                <div class="circle-value">75%</div>
+                            </div>
+                            <div class="pro-skill-label">Problem Solving</div>
+                        </div>
+                        <div class="pro-skill-item">
+                            <div class="pro-skill-circle"><svg viewBox="0 0 200 200">
+                                    <circle class="circle-bg" cx="100" cy="100" r="80"></circle>
+                                    <circle class="circle-progress circle-4" cx="100" cy="100" r="80"></circle>
+                                </svg>
+                                <div class="circle-value">70%</div>
+                            </div>
+                            <div class="pro-skill-label">Team Work</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-center mb-4" style="font-weight: 700; color: #333;">Technical Skills</h3>
+                    <div class="tech-skills-container">
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>HTML</span><span>90%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-html" role="progressbar" data-percent="90"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>JavaScript</span><span>85%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-js" role="progressbar" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>Bootstrap</span><span>80%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-bootstrap" role="progressbar" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>PHP</span><span>75%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-php" role="progressbar" data-percent="75"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>ASP.net</span><span>70%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-database" role="progressbar" data-percent="70"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>Laravel</span><span>65%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-laravel" role="progressbar" data-percent="65"></div>
+                            </div>
+                        </div>
+                        <div class="tech-skill-item">
+                            <div class="tech-skill-header"><span>Angular</span><span>60%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-angular" role="progressbar" data-percent="60"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION (scroll animation wrapper) ========== -->
+    <section id="contact">
+        <div class="container section-fade-up">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="form-container animate__animated animate__fadeIn">
+                        <h2 class="form-title"><b><i>How to Get in Touch</i></b></h2>
+                        <form id="admissionForm" novalidate method="post" onsubmit="return validation()">
+
+                            <div class="mb-3 blow-effect"><label for="name" class="form-label"> Name</label><input
+                                    type="text" class="form-control" id="name" name="name" required></div>
+
+                            <div class="mb-3 blow-effect"><label for="email" class="form-label">Email
+                                    Address</label><input type="email" class="form-control" id="email" name="email"
+                                    required></div>
+
+                            <div class="mb-3 blow-effect"><label for="message" class="form-label">Short
+                                    Message</label><textarea type="text" class="form-control" name="message"
+                                    id="message" rows="4" required></textarea></div>
+
+                            <div class="d-grid"><button type="submit" name="submit"
+                                    class="btn btn-submit btn-lg"  >Submit</button></div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== footer ================ -->
+    <footer class="bg-body-tertiary text-center">
+        <div class="container p-4 pb-0 d-flex flex-wrap justify-content-between">
+            <div class="col-md-8 text-start">
+                <h5 class="mb-1"><b><i>Syed Faizan Ali</i></b></h5>
+                <h5 class="mb-1"><b><i>[A Frontend and Backend Developer]</i></b></h5>
+                <p class="mb-1"><b><i>Email: syedfaizan0910@gmail.com</i></b></p>
+                <p class="mb-0"><i><b>Phone: +92 346 3223446</b></i></p>
+            </div>
+            <section class="mb-4">
+                <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;"
+                    href="https://www.facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color: #1DBF73;"
+                    href="https://www.fiverr.com/sellers/faizan_09ali/edit"><i class="fa-solid fa-briefcase"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;"
+                    href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color: #0077B5;"
+                    href="https://pk.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color: #333333;"
+                    href="https://github.com/faizandeveloper09"><i class="fab fa-github"></i></a>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">© 2025 <i>faizanFolio</i>: <a
+                class="text-body"><i>Designed By: Syed Faizan Ali</i></a></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ========== EXISTING FORM VALIDATION & SKILLS OBSERVER (PRESERVED) ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('admissionForm');
+
+            if (form) {
+                form.addEventListener('submit', function (event) {
+
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        const invalidFields = form.querySelectorAll(':invalid');
+                        invalidFields.forEach(field => {
+                            field.classList.add('animate__animated', 'animate__shakeX');
+                            setTimeout(() => field.classList.remove('animate__animated', 'animate__shakeX'), 1000);
+                        });
+
+                    } else {
+                        // ✅ YAHAN redirect hoga sirf jab form valid ho
+                        event.preventDefault(); // optional agar PHP use nahi kar rahe
+                        window.location.href = "dashboard.html"; // apni file ka naam likho
+                    }
+
+                    form.classList.add('was-validated');
+
+                }, false);
+
+                const fields = form.querySelectorAll('.form-control');
+                fields.forEach(field => {
+                    field.addEventListener('input', function () {
+                        if (this.checkValidity()) {
+                            this.classList.remove('is-invalid');
+                            this.classList.add('is-valid');
+                        } else {
+                            this.classList.remove('is-valid');
+                            this.classList.add('is-invalid');
+                        }
+                    });
+                });
+            }
+        });
+        // skills section observer (original)
+        const skillsSection = document.querySelector('#skills-section');
+        const progressBars = document.querySelectorAll('.progress-bar[data-percent]');
+        function setBarWidths(enable) { progressBars.forEach(bar => { bar.style.width = enable ? bar.getAttribute('data-percent') + '%' : '0%'; }); }
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); setBarWidths(true); }
+                else { entry.target.classList.remove('visible'); setBarWidths(false); }
+            });
+        }, { threshold: 0.3 });
+        if (skillsSection) skillsObserver.observe(skillsSection);
+
+        // ========== ADDITIONAL SCROLL REVEAL FOR OTHER SECTIONS (ABOUT, EDUCATION, PROJECTS, CONTACT) ==========
+        const fadeElements = document.querySelectorAll('.section-fade-up');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: keep visible after first trigger
+                }
+            });
+        }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+        fadeElements.forEach(el => fadeObserver.observe(el));
+        
+    </script>
+</body>
+
+</html>
